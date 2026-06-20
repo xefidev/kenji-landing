@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Kenji VPN & DNS — Пушь ранги без лагов</title>
+<meta name="description" content="Специализированный DNS и VPN для Brawl Stars. Zero delay, обход блокировок Supercell и стабильный ММ для пуша 30 и 35 рангов." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          display: ['"Space Grotesk"', 'Inter', 'sans-serif'],
+        },
+        colors: {
+          ink: '#05060B',
+        },
+        boxShadow: {
+          glass: '0 8px 32px 0 rgba(0,0,0,0.4), inset 0 1px 0 0 rgba(255,255,255,0.08)',
+          glow: '0 0 40px rgba(120,119,255,0.35), 0 0 80px rgba(120,119,255,0.15)',
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html, body { background: #05060B; color: #fff; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .font-display { font-family: 'Space Grotesk', Inter, sans-serif; letter-spacing: -0.02em; }
+
+  /* ---- Liquid background ---- */
+  .bg-stage {
+    position: fixed; inset: 0; z-index: -2;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(56,42,128,0.55), transparent 50%),
+      radial-gradient(ellipse at 80% 0%, rgba(20,30,90,0.6), transparent 55%),
+      radial-gradient(ellipse at 50% 100%, rgba(72,32,120,0.45), transparent 60%),
+      linear-gradient(180deg, #05060B 0%, #08081A 50%, #05060B 100%);
+  }
+  .noise {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .35;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+  }
+  .orb {
+    position: fixed; border-radius: 9999px; filter: blur(80px); opacity: .55;
+    will-change: transform; z-index: -1; pointer-events: none;
+  }
+  .orb-1 { width: 520px; height: 520px; background: #5B5BFF; top: -120px; left: -120px; animation: float1 22s ease-in-out infinite; }
+  .orb-2 { width: 620px; height: 620px; background: #8A2BE2; top: 30%; right: -180px; animation: float2 26s ease-in-out infinite; }
+  .orb-3 { width: 460px; height: 460px; background: #2C6BFF; bottom: -160px; left: 20%; animation: float3 28s ease-in-out infinite; }
+  .orb-4 { width: 360px; height: 360px; background: #A855F7; top: 55%; left: -100px; opacity: .35; animation: float1 30s ease-in-out infinite reverse; }
+  @keyframes float1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(120px,80px) scale(1.1); } }
+  @keyframes float2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-140px,100px) scale(1.05); } }
+  @keyframes float3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(80px,-100px) scale(1.08); } }
+
+  /* ---- Glass primitives ---- */
+  .glass {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+    transition: background .35s ease, border-color .35s ease, transform .35s ease, box-shadow .35s ease;
+  }
+  .glass:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.18);
+  }
+  .glass-strong {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, rgba(120,119,255,0.85), rgba(168,85,247,0.85));
+    border: 1px solid rgba(255,255,255,0.22);
+    box-shadow: 0 8px 30px rgba(120,119,255,0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 40px rgba(120,119,255,0.55), inset 0 1px 0 rgba(255,255,255,0.3);
+    filter: brightness(1.08);
+  }
+  .btn-ghost {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: background .25s ease, border-color .25s ease, transform .25s ease;
+  }
+  .btn-ghost:hover {
+    background: rgba(255,255,255,0.10);
+    border-color: rgba(255,255,255,0.22);
+    transform: translateY(-1px);
+  }
+
+  /* Pulse dot */
+  .pulse-dot {
+    width: 10px; height: 10px; border-radius: 9999px; background: #34D399;
+    box-shadow: 0 0 0 0 rgba(52,211,153,0.7);
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(52,211,153,0.6); }
+    70% { box-shadow: 0 0 0 14px rgba(52,211,153,0); }
+    100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); }
+  }
+
+  /* Radar */
+  .radar-ring {
+    position: absolute; inset: 0; border-radius: 9999px;
+    border: 1px solid rgba(120,255,180,0.18);
+  }
+  .radar-sweep {
+    position: absolute; inset: 0; border-radius: 9999px;
+    background: conic-gradient(from 0deg, rgba(52,211,153,0) 0deg, rgba(52,211,153,0.35) 60deg, rgba(52,211,153,0) 120deg);
+    animation: sweep 3.4s linear infinite;
+    mask: radial-gradient(circle, transparent 30%, #000 31%);
+    -webkit-mask: radial-gradient(circle, transparent 30%, #000 31%);
+  }
+  @keyframes sweep { to { transform: rotate(360deg); } }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* Premium card highlight */
+  .card-glow::before {
+    content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px;
+    background: linear-gradient(135deg, rgba(168,85,247,0.5), rgba(56,189,248,0.0) 40%, rgba(120,119,255,0.5));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .ring-soft { box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06), 0 30px 80px -20px rgba(0,0,0,0.6); }
+
+  ::selection { background: rgba(168,85,247,0.4); }
+</style>
+</head>
+<body class="min-h-screen">
+
+<div class="bg-stage"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<div class="orb orb-4"></div>
+<div class="noise"></div>
+
+<!-- HEADER -->
+<header class="fixed top-0 inset-x-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-4">
+    <nav class="glass rounded-2xl flex items-center justify-between px-4 sm:px-5 py-3">
+      <a href="#" class="flex items-center gap-2.5 group">
+        <span class="w-8 h-8 rounded-xl glass-strong grid place-items-center group-hover:scale-105 transition">
+          <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" stroke="url(#g1)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <defs><linearGradient id="g1" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#A855F7"/><stop offset="1" stop-color="#60A5FA"/></linearGradient></defs>
+            <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/>
+          </svg>
+        </span>
+        <span class="font-display text-[15px] sm:text-base font-semibold tracking-tight">
+          Kenji <span class="text-white/60 font-medium">VPN &amp; DNS</span>
+        </span>
+      </a>
+      <a href="https://t.me/Kenji_wifi" target="_blank" rel="noopener" class="btn-ghost rounded-xl px-3.5 sm:px-4 py-2 text-sm font-medium flex items-center gap-2">
+        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M9.04 15.47 8.9 19.3c.42 0 .6-.18.82-.4l1.97-1.88 4.08 2.98c.75.41 1.29.2 1.49-.69l2.7-12.66c.26-1.16-.42-1.61-1.15-1.34L3.4 9.86c-1.13.44-1.12 1.07-.2 1.36l3.96 1.24 9.2-5.8c.43-.27.83-.12.5.16"/></svg>
+        Наш канал
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative pt-36 sm:pt-44 pb-20 sm:pb-28">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+    <div class="reveal inline-flex items-center gap-2 glass rounded-full px-3.5 py-1.5 text-xs font-medium text-white/80 mb-6">
+      <span class="pulse-dot"></span>
+      Сервера ЕС онлайн · Zero Delay активен
+    </div>
+
+    <h1 class="reveal font-display text-4xl sm:text-6xl md:text-7xl font-bold leading-[1.02] tracking-tight">
+      Забудь про задержку <br class="hidden sm:block"/>
+      в катках. <span class="bg-clip-text text-transparent" style="background-image:linear-gradient(135deg,#C4B5FD,#60A5FA,#A855F7);">Пушь ранги</span> с Kenji.
+    </h1>
+
+    <p class="reveal mt-6 text-base sm:text-lg text-white/65 max-w-2xl mx-auto leading-relaxed">
+      Специализированный DNS и VPN для Brawl Stars. Стабильный коннект к европейским серверам без лагов, моментальный отклик персонажа (Zero Delay) и обход сбива ММ для комфортного пуша 30 и 35 рангов.
+    </p>
+
+    <div class="reveal mt-10 mx-auto max-w-md">
+      <div class="relative glass-strong rounded-3xl p-5 sm:p-6 ring-soft">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="relative w-12 h-12 rounded-full glass grid place-items-center">
+              <div class="radar-ring"></div>
+              <div class="radar-sweep"></div>
+              <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_#34D399]"></div>
+            </div>
+            <div class="text-left">
+              <div class="text-[11px] uppercase tracking-[0.18em] text-white/45">Live monitor</div>
+              <div class="font-display font-semibold text-white/95">EU-Frankfurt · BS</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="pulse-dot"></span>
+            <span class="text-emerald-300 text-sm font-semibold">Стабильный ММ</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 mt-5">
+          <div class="glass rounded-2xl px-3 py-3 text-left">
+            <div class="text-[10px] uppercase tracking-[0.15em] text-white/45">Пинг</div>
+            <div class="font-display text-xl font-semibold"><span id="ping">24</span><span class="text-white/50 text-sm">ms</span></div>
+          </div>
+          <div class="glass rounded-2xl px-3 py-3 text-left">
+            <div class="text-[10px] uppercase tracking-[0.15em] text-white/45">Jitter</div>
+            <div class="font-display text-xl font-semibold"><span id="jitter">1.2</span><span class="text-white/50 text-sm">ms</span></div>
+          </div>
+          <div class="glass rounded-2xl px-3 py-3 text-left">
+            <div class="text-[10px] uppercase tracking-[0.15em] text-white/45">Loss</div>
+            <div class="font-display text-xl font-semibold"><span id="loss">0.0</span><span class="text-white/50 text-sm">%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="https://t.me/Kenjipay_bot" target="_blank" rel="noopener" class="btn-primary rounded-2xl px-6 py-3.5 text-sm sm:text-[15px] font-semibold flex items-center gap-2 w-full sm:w-auto justify-center">
+        <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M9.04 15.47 8.9 19.3c.42 0 .6-.18.82-.4l1.97-1.88 4.08 2.98c.75.41 1.29.2 1.49-.69l2.7-12.66c.26-1.16-.42-1.61-1.15-1.34L3.4 9.86c-1.13.44-1.12 1.07-.2 1.36l3.96 1.24 9.2-5.8c.43-.27.83-.12.5.16"/></svg>
+        Забрать доступ в Telegram-боте
+      </a>
+      <a href="https://t.me/Kenji_wifi" target="_blank" rel="noopener" class="btn-ghost rounded-2xl px-6 py-3.5 text-sm sm:text-[15px] font-semibold w-full sm:w-auto text-center">
+        Перейти в канал проекта
+      </a>
+    </div>
+
+    <div class="reveal mt-6 flex items-center justify-center gap-5 text-xs text-white/45">
+      <span>Без рекламы в игре</span>
+      <span class="w-1 h-1 rounded-full bg-white/25"></span>
+      <span>Xray / VLESS</span>
+      <span class="w-1 h-1 rounded-full bg-white/25"></span>
+      <span>Без сбива ММ</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="relative py-16 sm:py-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="reveal text-center mb-12">
+      <div class="inline-block glass rounded-full px-3 py-1 text-[11px] tracking-[0.2em] uppercase text-white/60">Два режима. Один результат.</div>
+      <h2 class="font-display text-3xl sm:text-5xl font-bold mt-4 tracking-tight">DNS или VPN — выбирай под свой пуш</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      <div class="reveal glass rounded-3xl p-6 sm:p-8 ring-soft relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full blur-3xl opacity-40" style="background:#60A5FA"></div>
+        <div class="relative">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-11 h-11 rounded-2xl glass-strong grid place-items-center">
+              <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="#93C5FD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg>
+            </div>
+            <div>
+              <div class="text-[11px] tracking-[0.2em] uppercase text-white/45">Mode 01</div>
+              <h3 class="font-display text-2xl font-semibold">Kenji DNS</h3>
+              <div class="text-xs text-white/55">Для игры без приложений</div>
+            </div>
+          </div>
+          <p class="text-white/70 leading-relaxed">
+            Идеальный пинг в один клик. Обходит блокировку Supercell напрямую через настройки твоего телефона. Никакого лишнего софта в фоне — просто вставь ссылку в настройки, режь рекламу и пушь кубки с минимальным откликом.
+          </p>
+          <ul class="mt-5 space-y-2 text-sm text-white/70">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-300"></span> Без приложения · работает на iOS и Android</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-300"></span> Режет рекламу и трекеры в игре</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-sky-300"></span> Минимальный отклик · 0 фоновых процессов</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="reveal glass rounded-3xl p-6 sm:p-8 ring-soft relative overflow-hidden card-glow">
+        <div class="absolute -top-24 -left-24 w-72 h-72 rounded-full blur-3xl opacity-40" style="background:#A855F7"></div>
+        <div class="relative">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-11 h-11 rounded-2xl glass-strong grid place-items-center">
+              <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="#C4B5FD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z"/></svg>
+            </div>
+            <div>
+              <div class="text-[11px] tracking-[0.2em] uppercase text-white/45">Mode 02</div>
+              <h3 class="font-display text-2xl font-semibold">Kenji VPN</h3>
+              <div class="text-xs text-white/55">Для жесткого пуша и обхода задержек</div>
+            </div>
+          </div>
+          <p class="text-white/70 leading-relaxed">
+            Кастомные игровые маршруты. Передовые протоколы Xray/VLESS направляют твой трафик напрямую к европейским дата-центрам игры. Стабильный пинг без скачков, защита от вылетов во время важных каток и ровный подбор игроков.
+          </p>
+          <ul class="mt-5 space-y-2 text-sm text-white/70">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-300"></span> Xray / VLESS · игровая маршрутизация</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-300"></span> Прямой коннект в EU дата-центры</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-300"></span> Без вылетов и сбива ММ на ранге 30+</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="relative py-16 sm:py-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="reveal text-center mb-12">
+      <div class="inline-block glass rounded-full px-3 py-1 text-[11px] tracking-[0.2em] uppercase text-white/60">Тарифы</div>
+      <h2 class="font-display text-3xl sm:text-5xl font-bold mt-4 tracking-tight">Выбери режим под свой пуш</h2>
+      <p class="text-white/60 mt-3 max-w-xl mx-auto">От бесплатного теста до киберспортивного выделенного сервера — все доступы оформляются в боте за 30 секунд.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="reveal glass rounded-3xl p-6 sm:p-7 ring-soft flex flex-col">
+        <div class="flex items-center justify-between">
+          <div class="text-[11px] tracking-[0.2em] uppercase text-white/45">Free</div>
+          <div class="w-9 h-9 rounded-xl glass-strong grid place-items-center">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="#93C5FD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>
+          </div>
+        </div>
+        <h3 class="font-display text-2xl font-semibold mt-3">Стартовый тест</h3>
+        <p class="text-white/55 text-sm mt-1">Чтобы попробовать DNS и понять разницу в пинге.</p>
+        <div class="mt-5 flex items-baseline gap-1">
+          <span class="font-display text-4xl font-bold">0₽</span>
+          <span class="text-white/45 text-sm">/ старт</span>
+        </div>
+        <ul class="mt-5 space-y-2 text-sm text-white/70 flex-1">
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white/40"></span> Базовый DNS-доступ</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white/40"></span> 1 устройство</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white/40"></span> Общий пул серверов</li>
+        </ul>
+        <a href="https://t.me/Kenjipay_bot" target="_blank" rel="noopener" class="btn-ghost rounded-2xl mt-6 py-3 text-sm font-semibold text-center">Выбрать</a>
+      </div>
+
+      <div class="reveal glass rounded-3xl p-6 sm:p-7 ring-soft flex flex-col relative card-glow">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 glass-strong rounded-full px-3 py-1 text-[10px] tracking-[0.2em] uppercase text-white/80">Популярный</div>
+        <div class="flex items-center justify-between">
+          <div class="text-[11px] tracking-[0.2em] uppercase text-white/45">Pro</div>
+          <div class="w-9 h-9 rounded-xl glass-strong grid place-items-center">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="#C4B5FD" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="m3 7 4 4 5-6 5 6 4-4-2 12H5L3 7z"/></svg>
+          </div>
+        </div>
+        <h3 class="font-display text-2xl font-semibold mt-3">Режим для соло-пуша</h3>
+        <p class="text-white/55 text-sm mt-1">VPN + DNS, стабильный коннект до 35 ранга без сбива ММ.</p>
+        <div class="mt-5 flex items-baseline gap-1">
+          <span class="font-display text-4xl font-bold">299₽</span>
+          <span class="text-white/45 text-sm">/ мес</span>
+        </div>
+        <ul class="mt-5 space-y-2 text-sm text-white/70 flex-1">
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-300"></span> Xray / VLESS · игровая маршрутизация</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-300"></span> EU-сервера без перегрузки</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-300"></span> До 2 устройств</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-300"></span> Защита от сбива ММ</li>
+        </ul>
+        <a href="https://t.me/Kenjipay_bot" target="_blank" rel="noopener" class="btn-primary rounded-2xl mt-6 py-3 text-sm font-semibold text-center">Выбрать</a>
+      </div>
+
+      <div class="reveal glass rounded-3xl p-6 sm:p-7 ring-soft flex flex-col relative">
+        <div class="flex items-center justify-between">
+          <div class="text-[11px] tracking-[0.2em] uppercase text-white/45">VIP</div>
+          <div class="w-9 h-9 rounded-xl glass-strong grid place-items-center">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="#FDE68A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4zM5 6H3v2a3 3 0 0 0 3 3M19 6h2v2a3 3 0 0 1-3 3"/></svg>
+          </div>
+        </div>
+        <h3 class="font-display text-2xl font-semibold mt-3">Киберспортивный VIP</h3>
+        <p class="text-white/55 text-sm mt-1">Выделенный сервер только для тебя. Максимальный приоритет пакетов.</p>
+        <div class="mt-5 flex items-baseline gap-1">
+          <span class="font-display text-4xl font-bold">699₽</span>
+          <span class="text-white/45 text-sm">/ мес</span>
+        </div>
+        <ul class="mt-5 space-y-2 text-sm text-white/70 flex-1">
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-200"></span> Выделенный игровой сервер</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-200"></span> Приоритетная маршрутизация</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-200"></span> До 5 устройств</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-200"></span> Личная поддержка 24/7</li>
+        </ul>
+        <a href="https://t.me/Kenjipay_bot" target="_blank" rel="noopener" class="btn-ghost rounded-2xl mt-6 py-3 text-sm font-semibold text-center">Выбрать</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="relative py-12 mt-10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="glass rounded-3xl px-5 sm:px-7 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2.5">
+        <span class="w-7 h-7 rounded-lg glass-strong grid place-items-center">
+          <svg viewBox="0 0 24 24" fill="none" class="w-3.5 h-3.5" stroke="#C4B5FD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+        </span>
+        <span class="text-sm text-white/65">© 2026 Kenji Network. Все права защищены.</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="https://t.me/Kenji_wifi" target="_blank" rel="noopener" class="btn-ghost rounded-xl px-3.5 py-2 text-sm font-medium">Канал</a>
+        <a href="https://t.me/Kenjipay_bot" target="_blank" rel="noopener" class="btn-primary rounded-xl px-3.5 py-2 text-sm font-semibold">Telegram-бот</a>
+      </div>
+    </div>
+    <p class="text-center text-[11px] text-white/35 mt-5">Kenji VPN &amp; DNS — это игровой инструмент для пуша рангов и снижения задержек в Brawl Stars. Не является сервисом анонимности или обхода законодательных ограничений.</p>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const pingEl = document.getElementById('ping');
+  const jitterEl = document.getElementById('jitter');
+  const lossEl = document.getElementById('loss');
+  function rand(min, max, dec) {
+    const v = Math.random() * (max - min) + min;
+    return dec ? v.toFixed(dec) : Math.round(v);
+  }
+  setInterval(() => {
+    pingEl.textContent = rand(22, 28, 0);
+    jitterEl.textContent = rand(0.8, 1.6, 1);
+    lossEl.textContent = rand(0, 0.2, 1);
+  }, 1400);
+
+  const orbs = document.querySelectorAll('.orb');
+  window.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5);
+    const y = (e.clientY / window.innerHeight - 0.5);
+    orbs.forEach((o, i) => {
+      const k = (i + 1) * 10;
+      o.style.transform = `translate(${x * k}px, ${y * k}px)`;
+    });
+  }, { passive: true });
+</script>
+
+</body>
+</html>
