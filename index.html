@@ -12,26 +12,9 @@
 <meta property="og:locale" content="ru_RU" />
 <meta property="og:site_name" content="Kenji Network" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%230a0a0c%22/><path d=%22M13 6 6 17h6l-1 9 11-13h-7l1-7z%22 fill=%22%23ff3b30%22/></svg>" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%230a0a0c%22/%3E%3Cpath d=%22M13 6 6 17h6l-1 9 11-13h-7l1-7z%22 fill=%22%23ff3b30%22/%3E%3C/svg%3E" />
 <title>Kenji VPN &amp; DNS. Пуш кубки против ботов в Brawl Stars</title>
 <meta name="description" content="Специализированный DNS и VPN для Brawl Stars. Zero delay, обход блокировок и стабильный ММ для пуша 3 Прайм и Про Лиги в ранговом бою." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: {
-          sans: ['Inter', 'system-ui', 'sans-serif'],
-          display: ['"Space Grotesk"', 'Inter', 'sans-serif'],
-          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-        },
-      }
-    }
-  }
-</script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body class="min-h-screen">
@@ -51,13 +34,9 @@
     <nav class="glass rounded-2xl flex items-center justify-between px-4 sm:px-5 py-3">
       <a href="#" class="flex items-center gap-2.5 group">
         <span class="w-8 h-8 rounded-xl glass-strong grid place-items-center group-hover:scale-105 transition">
-          <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" stroke="#ff3b30" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4" stroke="#ff3b30" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
         </span>
-        <span class="font-display text-[15px] sm:text-base font-semibold tracking-tight">
-          Kenji <span class="text-white/60 font-medium">VPN &amp; DNS</span>
-        </span>
+        <span class="font-display text-[15px] sm:text-base font-semibold tracking-tight">Kenji<span class="text-white/60 font-medium"> VPN &amp; DNS</span></span>
       </a>
       <a href="https://t.me/Kenji_wifi" target="_blank" rel="noopener" class="btn-ghost rounded-xl px-3.5 sm:px-4 py-2 text-sm font-medium flex items-center gap-2">
         <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M9.04 15.47 8.9 19.3c.42 0 .6-.18.82-.4l1.97-1.88 4.08 2.98c.75.41 1.29.2 1.49-.69l2.7-12.66c.26-1.16-.42-1.61-1.15-1.34L3.4 9.86c-1.13.44-1.12 1.07-.2 1.36l3.96 1.24 9.2-5.8c.43-.27.83-.12.5.16"/></svg>
@@ -71,7 +50,7 @@
   <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
     <div class="reveal inline-flex items-center gap-2 glass rounded-full px-3.5 py-1.5 text-xs font-medium text-white/80 mb-6">
       <span class="pulse-dot"></span>
-      EU-кластеры онлайн · Zero Delay активен
+      Онлайн · <span id="liveOnline" class="digit-roll font-mono text-white">346</span> юзеров
     </div>
     <h1 class="reveal font-display text-4xl sm:text-6xl md:text-7xl font-bold leading-[0.98] tracking-tight">
       Пуш кубки <br class="hidden sm:block"/>
@@ -85,138 +64,62 @@
         <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M9.04 15.47 8.9 19.3c.42 0 .6-.18.82-.4l1.97-1.88 4.08 2.98c.75.41 1.29.2 1.49-.69l2.7-12.66c.26-1.16-.42-1.61-1.15-1.34L3.4 9.86c-1.13.44-1.12 1.07-.2 1.36l3.96 1.24 9.2-5.8c.43-.27.83-.12.5.16"/></svg>
         Забрать доступ в боте
       </a>
-      <a href="#vip" class="btn-ghost rounded-2xl px-6 py-3.5 text-sm sm:text-[15px] font-semibold w-full sm:w-auto text-center">
-        Что входит в VIP
-      </a>
+      <a href="#vip" class="btn-ghost rounded-2xl px-6 py-3.5 text-sm sm:text-[15px] font-semibold w-full sm:w-auto text-center">Что входит в VIP</a>
     </div>
   </div>
 </section>
 
-<section id="monitor" class="relative pb-16 sm:pb-24">
+<!-- LIVE ACTIVITY — отзывы + счётчики вместо монитора -->
+<section class="relative pb-16 sm:pb-24">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="reveal glass-strong rounded-3xl p-5 sm:p-7 ring-soft relative overflow-hidden">
-      <div class="absolute -top-32 -right-32 w-80 h-80 rounded-full blur-3xl opacity-30" style="background:#ff3b30"></div>
-      <div class="absolute -bottom-32 -left-32 w-80 h-80 rounded-full blur-3xl opacity-30" style="background:#b81c1c"></div>
-      <div class="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-xl glass grid place-items-center">
-            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="#ff3b30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3M19 12h3M12 2v3M12 19v3"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+    <div class="reveal text-center mb-10">
+      <div class="inline-block glass rounded-full px-3 py-1 text-[11px] tracking-[0.2em] uppercase text-white/60 font-mono">// live activity</div>
+      <h2 class="font-display text-3xl sm:text-5xl font-bold mt-4 tracking-tight">Нас уже <span id="liveTotal" class="text-[#ff3b30]">8&nbsp;420</span></h2>
+      <p class="text-white/60 mt-3 max-w-lg mx-auto text-sm">Присоединяйся к сообществу игроков, которые пушат с Kenji</p>
+    </div>
+    <div class="grid lg:grid-cols-[1fr_320px] gap-6">
+      <!-- Reviews carousel -->
+      <div class="reveal glass-strong rounded-3xl p-5 sm:p-7 ring-soft relative overflow-hidden">
+        <div class="absolute -top-32 -right-32 w-80 h-80 rounded-full blur-3xl opacity-30" style="background:#ff3b30"></div>
+        <div class="relative">
+          <div class="flex items-center gap-2 mb-5">
+            <div class="w-8 h-8 rounded-lg glass grid place-items-center">
+              <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="#ff3b30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="font-display text-lg font-semibold">Отзывы игроков</div>
           </div>
-          <div>
-            <div class="text-[11px] uppercase tracking-[0.2em] text-white/45 font-mono">// live monitor</div>
-            <div class="font-display font-semibold text-white/95 text-lg">Network telemetry</div>
-          </div>
-        </div>
-        <div class="flex flex-wrap items-center gap-2" id="serverTabs">
-          <button class="tab active" data-server="fra">EU · Frankfurt</button>
-          <button class="tab" data-server="waw">EU · Warsaw</button>
-          <button class="tab" data-server="ams">EU · Amsterdam</button>
+          <div id="reviewsViewport" class="min-h-[160px]"></div>
         </div>
       </div>
-      <div class="relative mt-6 grid lg:grid-cols-[1fr_280px] gap-6">
-        <div class="grid sm:grid-cols-3 gap-3">
-          <div class="glass rounded-2xl p-4">
-            <div class="flex items-center justify-between">
-              <div class="text-[10px] uppercase tracking-[0.18em] text-white/45 font-mono">ping</div>
+      <!-- Live counters -->
+      <div class="reveal flex flex-col gap-4">
+        <div class="glass-strong rounded-2xl p-5 ring-soft relative overflow-hidden">
+          <div class="absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl opacity-40" style="background:#ff3b30"></div>
+          <div class="relative">
+            <div class="text-[11px] tracking-[0.2em] uppercase text-white/45 font-mono mb-1">Сейчас онлайн</div>
+            <div class="font-display text-5xl font-bold text-white"><span id="liveOnline" class="digit-roll">346</span></div>
+            <div class="flex items-center gap-2 mt-2 text-sm text-white/60">
               <span class="pulse-dot" style="width:6px;height:6px;"></span>
+              <span>юзеров</span>
             </div>
-            <div class="mt-2 font-display text-3xl font-semibold flex items-baseline gap-1">
-              <span id="ping" class="digit-roll">24</span>
-              <span class="text-white/45 text-sm font-mono">ms</span>
-            </div>
-            <svg class="spark spark-ping mt-2" viewBox="0 0 200 28" preserveAspectRatio="none"><path id="sparkPing" d="" stroke="currentColor"/></svg>
-          </div>
-          <div class="glass rounded-2xl p-4">
-            <div class="flex items-center justify-between">
-              <div class="text-[10px] uppercase tracking-[0.18em] text-white/45 font-mono">jitter</div>
-              <span class="pulse-dot" style="width:6px;height:6px;background:#ff6b3d;box-shadow:0 0 0 0 rgba(255,107,61,.6)"></span>
-            </div>
-            <div class="mt-2 font-display text-3xl font-semibold flex items-baseline gap-1">
-              <span id="jitter" class="digit-roll">1.2</span>
-              <span class="text-white/45 text-sm font-mono">ms</span>
-            </div>
-            <svg class="spark spark-jit mt-2" viewBox="0 0 200 28" preserveAspectRatio="none"><path id="sparkJit" d="" stroke="currentColor"/></svg>
-          </div>
-          <div class="glass rounded-2xl p-4">
-            <div class="flex items-center justify-between">
-              <div class="text-[10px] uppercase tracking-[0.18em] text-white/45 font-mono">packet loss</div>
-              <span class="pulse-dot" style="width:6px;height:6px;"></span>
-            </div>
-            <div class="mt-2 font-display text-3xl font-semibold flex items-baseline gap-1">
-              <span id="loss" class="digit-roll">0.0</span>
-              <span class="text-white/45 text-sm font-mono">%</span>
-            </div>
-            <svg class="spark spark-loss mt-2" viewBox="0 0 200 28" preserveAspectRatio="none"><path id="sparkLoss" d="" stroke="currentColor"/></svg>
-          </div>
-          <div class="sm:col-span-3 glass rounded-2xl p-4 chart-card">
-            <div class="flex items-center justify-between mb-3">
-              <div class="flex items-center gap-3 text-xs text-white/55 font-mono">
-                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#ff3b30;box-shadow:0 0 8px #ff3b30"></span> Kenji</span>
-                <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#9ca0a8;box-shadow:0 0 8px #9ca0a8"></span> Обычный провайдер</span>
-              </div>
-              <div class="text-[10px] tracking-[0.18em] uppercase text-white/45 font-mono">// last 60s</div>
-            </div>
-            <svg viewBox="0 0 600 140" preserveAspectRatio="none" class="w-full h-[140px]">
-              <defs>
-                <linearGradient id="kenjiGrad" x1="0" x2="1" y1="0" y2="0">
-                  <stop offset="0%" stop-color="#ff6b3d"/>
-                  <stop offset="50%" stop-color="#ff3b30"/>
-                  <stop offset="100%" stop-color="#b81c1c"/>
-                </linearGradient>
-                <linearGradient id="kenjiArea" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#ff3b30" stop-opacity=".35"/>
-                  <stop offset="100%" stop-color="#ff3b30" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <g class="chart-grid">
-                <line x1="0" y1="35" x2="600" y2="35"/>
-                <line x1="0" y1="70" x2="600" y2="70"/>
-                <line x1="0" y1="105" x2="600" y2="105"/>
-              </g>
-              <path id="areaKenji" class="area-kenji" d=""/>
-              <path id="lineIsp" class="line-isp" d=""/>
-              <path id="lineKenji" class="line-kenji" d=""/>
-            </svg>
           </div>
         </div>
-        <div class="glass rounded-2xl p-4 flex flex-col items-center justify-center">
-          <div class="text-[10px] tracking-[0.2em] uppercase text-white/45 font-mono mb-2 w-full text-left">// node radar</div>
-          <div class="relative w-full max-w-[240px] aspect-square">
-            <svg viewBox="0 0 200 200" class="radar-svg">
-              <defs>
-                <radialGradient id="radarBg" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#ff3b30" stop-opacity="0.18"/>
-                  <stop offset="100%" stop-color="#ff3b30" stop-opacity="0"/>
-                </radialGradient>
-                <linearGradient id="sweepGrad" x1="0" x2="1" y1="0" y2="0">
-                  <stop offset="0%" stop-color="#34D399" stop-opacity="0"/>
-                  <stop offset="100%" stop-color="#34D399" stop-opacity="0.55"/>
-                </linearGradient>
-              </defs>
-              <circle cx="100" cy="100" r="92" fill="url(#radarBg)"/>
-              <g class="radar-grid">
-                <circle cx="100" cy="100" r="30"/>
-                <circle cx="100" cy="100" r="55"/>
-                <circle cx="100" cy="100" r="80"/>
-                <circle cx="100" cy="100" r="92"/>
-              </g>
-              <line class="radar-cross" x1="8" y1="100" x2="192" y2="100"/>
-              <line class="radar-cross" x1="100" y1="8" x2="100" y2="192"/>
-              <g class="radar-sweep">
-                <path d="M100,100 L192,100 A92,92 0 0,0 165,35 Z" fill="url(#sweepGrad)"/>
-                <line x1="100" y1="100" x2="192" y2="100" stroke="#34D399" stroke-width="1.4" opacity="0.85"/>
-              </g>
-              <circle class="blip fade" cx="140" cy="70" r="3" style="animation-delay:0s"/>
-              <circle class="blip fade" cx="60" cy="120" r="3" style="animation-delay:1.2s"/>
-              <circle class="blip fade" cx="155" cy="135" r="3" style="animation-delay:2.4s"/>
-              <circle class="blip fade" cx="75" cy="60" r="3" style="animation-delay:3.1s"/>
-              <circle cx="100" cy="100" r="3.4" fill="#fff"/>
-              <circle cx="100" cy="100" r="7" fill="none" stroke="#fff" stroke-opacity="0.35"/>
-            </svg>
+        <div class="glass rounded-2xl p-4 flex items-center gap-4">
+          <div class="w-10 h-10 rounded-xl glass-strong grid place-items-center flex-shrink-0">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="#ff3b30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
-          <div class="mt-3 w-full flex items-center justify-between text-[11px] text-white/60 font-mono">
-            <span class="flex items-center gap-1.5"><span class="pulse-dot" style="width:6px;height:6px;"></span> 4 узла</span>
-            <span id="radarLoc">FRA-01</span>
+          <div>
+            <div class="text-[10px] tracking-[0.2em] uppercase text-white/45 font-mono">За сегодня</div>
+            <div class="font-display text-xl font-semibold"><span id="liveToday" class="digit-roll">+47</span></div>
+          </div>
+        </div>
+        <div class="glass rounded-2xl p-4 flex items-center gap-4">
+          <div class="w-10 h-10 rounded-xl glass-strong grid place-items-center flex-shrink-0">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="#ff3b30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a14 14 0 0 1 0 20 14 14 0 0 1 0-20"/></svg>
+          </div>
+          <div>
+            <div class="text-[10px] tracking-[0.2em] uppercase text-white/45 font-mono">Страна</div>
+            <div class="font-display text-xl font-semibold flex items-center gap-1" id="liveCountry">🇷🇺 <span class="text-sm font-mono text-white/70">RU</span></div>
           </div>
         </div>
       </div>
