@@ -3,7 +3,17 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>Kenji VPN & DNS — Пушь ранги без лагов</title>
+<meta name="theme-color" content="#0a0a0c" />
+<meta name="robots" content="index,follow" />
+<meta name="format-detection" content="telephone=no" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Kenji VPN &amp; DNS. Пуш кубки против ботов" />
+<meta property="og:description" content="DNS и VPN под Brawl Stars. Стабильный ММ на 3 Прайм и Про Лиге." />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:site_name" content="Kenji Network" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%230a0a0c%22/><path d=%22M13 6 6 17h6l-1 9 11-13h-7l1-7z%22 fill=%22%23ff3b30%22/></svg>" />
+<title>Kenji VPN &amp; DNS. Пуш кубки против ботов в Brawl Stars</title>
 <meta name="description" content="Специализированный DNS и VPN для Brawl Stars. Zero delay, обход блокировок и стабильный ММ для пуша 3 Прайм и Про Лиги в ранговом бою." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,261 +32,10 @@
     }
   }
 </script>
-<style>
-  :root {
-    --bg: #05060B;
-    --ink: #FFFFFF;
-    --neon-violet: #A855F7;
-    --neon-blue: #60A5FA;
-    --neon-cyan: #22D3EE;
-    --neon-green: #34D399;
-    --neon-pink: #F472B6;
-  }
-  * { -webkit-tap-highlight-color: transparent; }
-  html, body { background: var(--bg); color: var(--ink); }
-  body {
-    font-family: 'Inter', system-ui, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-  .font-display { font-family: 'Space Grotesk', Inter, sans-serif; letter-spacing: -0.02em; }
-  .font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
-
-  /* ---- Liquid background ---- */
-  .bg-stage {
-    position: fixed; inset: 0; z-index: -3;
-    background:
-      radial-gradient(ellipse at 20% 10%, rgba(56,42,128,0.55), transparent 50%),
-      radial-gradient(ellipse at 80% 0%, rgba(20,30,90,0.6), transparent 55%),
-      radial-gradient(ellipse at 50% 100%, rgba(72,32,120,0.45), transparent 60%),
-      linear-gradient(180deg, #05060B 0%, #08081A 50%, #05060B 100%);
-  }
-  .grid-overlay {
-    position: fixed; inset: 0; z-index: -2; pointer-events: none; opacity: .25;
-    background-image:
-      linear-gradient(rgba(168,85,247,0.07) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(96,165,250,0.07) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%);
-    -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%);
-  }
-  .noise {
-    position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .3;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    mix-blend-mode: overlay;
-  }
-  .orb {
-    position: fixed; border-radius: 9999px; filter: blur(90px); opacity: .5;
-    will-change: transform; z-index: -1; pointer-events: none;
-  }
-  .orb-1 { width: 540px; height: 540px; background: #5B5BFF; top: -140px; left: -140px; animation: float1 22s ease-in-out infinite; }
-  .orb-2 { width: 640px; height: 640px; background: #8A2BE2; top: 25%; right: -200px; animation: float2 26s ease-in-out infinite; }
-  .orb-3 { width: 480px; height: 480px; background: #2C6BFF; bottom: -180px; left: 18%; animation: float3 28s ease-in-out infinite; }
-  .orb-4 { width: 380px; height: 380px; background: #A855F7; top: 55%; left: -120px; opacity: .35; animation: float1 30s ease-in-out infinite reverse; }
-  .orb-5 { width: 300px; height: 300px; background: #22D3EE; top: 70%; right: 10%; opacity: .25; animation: float2 32s ease-in-out infinite reverse; }
-  @keyframes float1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(120px,80px) scale(1.1); } }
-  @keyframes float2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-140px,100px) scale(1.05); } }
-  @keyframes float3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(80px,-100px) scale(1.08); } }
-
-  /* ---- Glass primitives ---- */
-  .glass {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.10);
-    backdrop-filter: blur(24px) saturate(140%);
-    -webkit-backdrop-filter: blur(24px) saturate(140%);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
-    transition: background .35s ease, border-color .35s ease, transform .35s ease, box-shadow .35s ease;
-  }
-  .glass:hover {
-    background: rgba(255,255,255,0.07);
-    border-color: rgba(255,255,255,0.18);
-  }
-  .glass-strong {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.14);
-    backdrop-filter: blur(28px) saturate(160%);
-    -webkit-backdrop-filter: blur(28px) saturate(160%);
-  }
-  .btn-primary {
-    background: linear-gradient(135deg, rgba(120,119,255,0.95), rgba(168,85,247,0.95));
-    border: 1px solid rgba(255,255,255,0.22);
-    box-shadow: 0 8px 30px rgba(120,119,255,0.4), inset 0 1px 0 rgba(255,255,255,0.28);
-    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
-  }
-  .btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 14px 44px rgba(120,119,255,0.6), inset 0 1px 0 rgba(255,255,255,0.32);
-    filter: brightness(1.08);
-  }
-  .btn-ghost {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.12);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    transition: background .25s ease, border-color .25s ease, transform .25s ease;
-  }
-  .btn-ghost:hover {
-    background: rgba(255,255,255,0.10);
-    border-color: rgba(255,255,255,0.24);
-    transform: translateY(-1px);
-  }
-
-  .pulse-dot {
-    width: 10px; height: 10px; border-radius: 9999px; background: var(--neon-green);
-    box-shadow: 0 0 0 0 rgba(52,211,153,0.7);
-    animation: pulse 1.8s infinite;
-  }
-  @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(52,211,153,0.6); }
-    70% { box-shadow: 0 0 0 14px rgba(52,211,153,0); }
-    100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); }
-  }
-
-  /* ---- Reveal on scroll ---- */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
-  .reveal.in { opacity: 1; transform: translateY(0); }
-
-  /* ---- Card glow border ---- */
-  .card-glow::before {
-    content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px;
-    background: linear-gradient(135deg, rgba(168,85,247,0.55), rgba(56,189,248,0.0) 40%, rgba(120,119,255,0.55));
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor; mask-composite: exclude;
-    pointer-events: none;
-  }
-  /* Neon orbit on VIP */
-  .neon-orbit { position: absolute; inset: -1px; border-radius: inherit; pointer-events: none; overflow: hidden; }
-  .neon-orbit::before {
-    content: ""; position: absolute; inset: -2px; border-radius: inherit;
-    background: conic-gradient(from 0deg, transparent 0deg, rgba(168,85,247,0.0) 60deg, rgba(244,114,182,0.85) 90deg, rgba(96,165,250,0.85) 120deg, transparent 180deg, transparent 360deg);
-    animation: orbit 5.5s linear infinite;
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor; mask-composite: exclude;
-    padding: 1.5px;
-  }
-  @keyframes orbit { to { transform: rotate(360deg); } }
-
-  .ring-soft { box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06), 0 30px 80px -20px rgba(0,0,0,0.6); }
-
-  ::selection { background: rgba(168,85,247,0.4); }
-
-  /* ---- Radar ---- */
-  .radar-svg { width: 100%; height: 100%; }
-  .radar-grid circle { fill: none; stroke: rgba(34,211,238,0.18); stroke-width: 1; }
-  .radar-cross { stroke: rgba(34,211,238,0.18); stroke-width: 1; }
-  .radar-sweep {
-    transform-origin: 100px 100px; animation: sweepRot 4s linear infinite;
-  }
-  @keyframes sweepRot { to { transform: rotate(360deg); } }
-  .blip { fill: var(--neon-green); filter: drop-shadow(0 0 6px rgba(52,211,153,0.9)); }
-  .blip.fade { animation: blipFade 4s linear infinite; }
-  @keyframes blipFade {
-    0% { opacity: 1; r: 3; }
-    60% { opacity: 0.4; r: 2.4; }
-    100% { opacity: 0.15; r: 2; }
-  }
-
-  /* ---- Mini sparkline under stats ---- */
-  .spark { width: 100%; height: 28px; display: block; }
-  .spark path { fill: none; stroke-width: 1.6; filter: drop-shadow(0 0 4px currentColor); }
-  .spark-ping { color: #C4B5FD; }
-  .spark-jit  { color: #60A5FA; }
-  .spark-loss { color: #34D399; }
-
-  /* ---- Server tab pills ---- */
-  .tab {
-    position: relative; padding: 8px 14px; font-size: 12px; letter-spacing: .04em;
-    border: 1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.03);
-    border-radius: 12px; color: rgba(255,255,255,0.65);
-    transition: all .25s ease;
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-  }
-  .tab:hover { color: #fff; border-color: rgba(255,255,255,0.2); }
-  .tab.active {
-    color: #fff;
-    background: linear-gradient(135deg, rgba(168,85,247,0.22), rgba(96,165,250,0.22));
-    border-color: rgba(168,85,247,0.55);
-    box-shadow: 0 0 0 1px rgba(168,85,247,0.25), 0 8px 24px rgba(168,85,247,0.25);
-  }
-  .tab.active::after {
-    content: ""; position: absolute; left: 12px; right: 12px; bottom: -1px; height: 2px;
-    background: linear-gradient(90deg, transparent, #A855F7, #60A5FA, transparent);
-    filter: blur(.4px);
-  }
-
-  /* ---- Live chart ---- */
-  .chart-card { position: relative; overflow: hidden; }
-  .chart-grid line { stroke: rgba(255,255,255,0.06); }
-  .line-kenji {
-    fill: none; stroke: url(#kenjiGrad); stroke-width: 2.2;
-    filter: drop-shadow(0 0 8px rgba(168,85,247,0.55));
-    stroke-linejoin: round; stroke-linecap: round;
-  }
-  .area-kenji { fill: url(#kenjiArea); opacity: .55; }
-  .line-isp {
-    fill: none; stroke: rgba(244,114,182,0.85); stroke-width: 1.8; stroke-dasharray: 4 4;
-    filter: drop-shadow(0 0 6px rgba(244,114,182,0.45));
-    stroke-linejoin: round;
-  }
-
-  /* ---- Animated tariff icons ---- */
-  .ico-wrap { position: relative; }
-  .ico-glow {
-    position: absolute; inset: -8px; border-radius: 14px; pointer-events: none;
-    background: radial-gradient(circle, currentColor 0%, transparent 65%);
-    opacity: .25; filter: blur(6px);
-  }
-  .ico-bolt   { animation: wobble 3.4s ease-in-out infinite; color: #93C5FD; }
-  .ico-shield { animation: pulseScale 3.2s ease-in-out infinite; color: #C4B5FD; }
-  .ico-trophy { animation: tilt 4.4s ease-in-out infinite; color: #FDE68A; }
-  @keyframes wobble {
-    0%,100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-3px) rotate(-6deg); }
-  }
-  @keyframes pulseScale {
-    0%,100% { transform: scale(1); filter: drop-shadow(0 0 6px currentColor); }
-    50% { transform: scale(1.06); filter: drop-shadow(0 0 14px currentColor); }
-  }
-  @keyframes tilt {
-    0%,100% { transform: rotate(-4deg); }
-    50% { transform: rotate(4deg); }
-  }
-
-  /* ---- 3D Tilt cards ---- */
-  .tilt-card {
-    transform-style: preserve-3d;
-    transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease;
-    will-change: transform;
-  }
-  .tilt-inner { transform: translateZ(28px); }
-
-  /* ---- DNS / VPN feature dots ---- */
-  .bullet {
-    width: 22px; height: 22px; border-radius: 8px; display: inline-flex;
-    align-items: center; justify-content: center;
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
-  }
-
-  /* ---- Rolling digit ---- */
-  .digit-roll { display: inline-block; transition: transform .35s cubic-bezier(.2,.7,.2,1), opacity .35s; }
-  .digit-roll.flip { transform: translateY(-6px); opacity: 0; }
-
-  /* Hide outline reset */
-  a, button { outline: none; }
-
-  /* Small screens: disable heavy tilt */
-  @media (max-width: 768px) {
-    .tilt-card { transform: none !important; }
-    .tilt-inner { transform: none !important; }
-  }
-
-  /* Reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    .orb, .radar-sweep, .blip.fade, .ico-bolt, .ico-shield, .ico-trophy, .neon-orbit::before { animation: none !important; }
-  }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body class="min-h-screen">
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-white focus:text-black focus:text-sm focus:font-semibold">Перейти к контенту</a>
 
 <div class="bg-stage"></div>
 <div class="grid-overlay"></div>
@@ -287,7 +46,6 @@
 <div class="orb orb-5"></div>
 <div class="noise"></div>
 
-<!-- HEADER -->
 <header class="fixed top-0 inset-x-0 z-50">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-4">
     <nav class="glass rounded-2xl flex items-center justify-between px-4 sm:px-5 py-3">
@@ -310,21 +68,20 @@
   </div>
 </header>
 
-<!-- HERO -->
-<section class="relative pt-32 sm:pt-40 pb-14 sm:pb-20">
+<section id="main" class="relative pt-32 sm:pt-40 pb-14 sm:pb-20">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
     <div class="reveal inline-flex items-center gap-2 glass rounded-full px-3.5 py-1.5 text-xs font-medium text-white/80 mb-6">
       <span class="pulse-dot"></span>
       EU-кластеры онлайн · Zero Delay активен
     </div>
 
-    <h1 class="reveal font-display text-4xl sm:text-6xl md:text-7xl font-bold leading-[1.02] tracking-tight">
-      Забудь про задержку <br class="hidden sm:block"/>
-      в катках. <span class="bg-clip-text text-transparent" style="background-image:linear-gradient(135deg,#C4B5FD,#60A5FA,#A855F7);">Пушь ранги</span> с Kenji.
+    <h1 class="reveal font-display text-4xl sm:text-6xl md:text-7xl font-bold leading-[0.98] tracking-tight">
+      Пуш кубки <br class="hidden sm:block"/>
+      против <span class="bg-clip-text text-transparent" style="background-image:linear-gradient(135deg,#C4B5FD,#60A5FA,#A855F7);">ботов</span>.
     </h1>
 
     <p class="reveal mt-6 text-base sm:text-lg text-white/65 max-w-2xl mx-auto leading-relaxed">
-      DNS и VPN, заточенные под Brawl Stars. Прямой коннект в EU без скачков пинга и сбива ММ на 3 Прайм и Про Лиге в ранговом бою.
+      DNS и VPN под Brawl Stars. Прямой EU-коннект. Стабильный ММ на 3 Прайм и Про Лиге.
     </p>
 
     <div class="reveal mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto sm:max-w-none">
@@ -339,15 +96,11 @@
   </div>
 </section>
 
-<!-- LIVE MONITOR -->
 <section id="monitor" class="relative pb-16 sm:pb-24">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
-
     <div class="reveal glass-strong rounded-3xl p-5 sm:p-7 ring-soft relative overflow-hidden">
       <div class="absolute -top-32 -right-32 w-80 h-80 rounded-full blur-3xl opacity-30" style="background:#A855F7"></div>
       <div class="absolute -bottom-32 -left-32 w-80 h-80 rounded-full blur-3xl opacity-30" style="background:#22D3EE"></div>
-
-      <!-- Top bar -->
       <div class="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div class="flex items-center gap-3">
           <div class="w-9 h-9 rounded-xl glass grid place-items-center">
@@ -358,22 +111,14 @@
             <div class="font-display font-semibold text-white/95 text-lg">Network telemetry</div>
           </div>
         </div>
-
-        <!-- Tabs -->
         <div class="flex flex-wrap items-center gap-2" id="serverTabs">
           <button class="tab active" data-server="fra">EU · Frankfurt</button>
           <button class="tab" data-server="waw">EU · Warsaw</button>
           <button class="tab" data-server="ams">EU · Amsterdam</button>
         </div>
       </div>
-
-      <!-- Grid: stats + radar -->
       <div class="relative mt-6 grid lg:grid-cols-[1fr_280px] gap-6">
-
-        <!-- Stats column -->
         <div class="grid sm:grid-cols-3 gap-3">
-
-          <!-- Ping -->
           <div class="glass rounded-2xl p-4">
             <div class="flex items-center justify-between">
               <div class="text-[10px] uppercase tracking-[0.18em] text-white/45 font-mono">ping</div>
@@ -383,12 +128,8 @@
               <span id="ping" class="digit-roll">24</span>
               <span class="text-white/45 text-sm font-mono">ms</span>
             </div>
-            <svg class="spark spark-ping mt-2" viewBox="0 0 200 28" preserveAspectRatio="none">
-              <path id="sparkPing" d="" stroke="currentColor"/>
-            </svg>
+            <svg class="spark spark-ping mt-2" viewBox="0 0 200 28" preserveAspectRatio="none"><path id="sparkPing" d="" stroke="currentColor"/></svg>
           </div>
-
-          <!-- Jitter -->
           <div class="glass rounded-2xl p-4">
             <div class="flex items-center justify-between">
               <div class="text-[10px] uppercase tracking-[0.18em] text-white/45 font-mono">jitter</div>
@@ -398,12 +139,8 @@
               <span id="jitter" class="digit-roll">1.2</span>
               <span class="text-white/45 text-sm font-mono">ms</span>
             </div>
-            <svg class="spark spark-jit mt-2" viewBox="0 0 200 28" preserveAspectRatio="none">
-              <path id="sparkJit" d="" stroke="currentColor"/>
-            </svg>
+            <svg class="spark spark-jit mt-2" viewBox="0 0 200 28" preserveAspectRatio="none"><path id="sparkJit" d="" stroke="currentColor"/></svg>
           </div>
-
-          <!-- Loss -->
           <div class="glass rounded-2xl p-4">
             <div class="flex items-center justify-between">
               <div class="text-[10px] uppercase tracking-[0.18em] text-white/45 font-mono">packet loss</div>
@@ -413,12 +150,8 @@
               <span id="loss" class="digit-roll">0.0</span>
               <span class="text-white/45 text-sm font-mono">%</span>
             </div>
-            <svg class="spark spark-loss mt-2" viewBox="0 0 200 28" preserveAspectRatio="none">
-              <path id="sparkLoss" d="" stroke="currentColor"/>
-            </svg>
+            <svg class="spark spark-loss mt-2" viewBox="0 0 200 28" preserveAspectRatio="none"><path id="sparkLoss" d="" stroke="currentColor"/></svg>
           </div>
-
-          <!-- Live chart row -->
           <div class="sm:col-span-3 glass rounded-2xl p-4 chart-card">
             <div class="flex items-center justify-between mb-3">
               <div class="flex items-center gap-3 text-xs text-white/55 font-mono">
@@ -440,19 +173,16 @@
                 </linearGradient>
               </defs>
               <g class="chart-grid">
-                <line x1="0" y1="35"  x2="600" y2="35"/>
-                <line x1="0" y1="70"  x2="600" y2="70"/>
+                <line x1="0" y1="35" x2="600" y2="35"/>
+                <line x1="0" y1="70" x2="600" y2="70"/>
                 <line x1="0" y1="105" x2="600" y2="105"/>
               </g>
               <path id="areaKenji" class="area-kenji" d=""/>
-              <path id="lineIsp"   class="line-isp"   d=""/>
+              <path id="lineIsp" class="line-isp" d=""/>
               <path id="lineKenji" class="line-kenji" d=""/>
             </svg>
           </div>
-
         </div>
-
-        <!-- Radar -->
         <div class="glass rounded-2xl p-4 flex flex-col items-center justify-center">
           <div class="text-[10px] tracking-[0.2em] uppercase text-white/45 font-mono mb-2 w-full text-left">// node radar</div>
           <div class="relative w-full max-w-[240px] aspect-square">
@@ -474,21 +204,16 @@
                 <circle cx="100" cy="100" r="80"/>
                 <circle cx="100" cy="100" r="92"/>
               </g>
-              <line class="radar-cross" x1="8"   y1="100" x2="192" y2="100"/>
-              <line class="radar-cross" x1="100" y1="8"   x2="100" y2="192"/>
-
-              <!-- Sweep wedge -->
+              <line class="radar-cross" x1="8" y1="100" x2="192" y2="100"/>
+              <line class="radar-cross" x1="100" y1="8" x2="100" y2="192"/>
               <g class="radar-sweep">
                 <path d="M100,100 L192,100 A92,92 0 0,0 165,35 Z" fill="url(#sweepGrad)"/>
                 <line x1="100" y1="100" x2="192" y2="100" stroke="#34D399" stroke-width="1.4" opacity="0.85"/>
               </g>
-
-              <!-- Blips -->
-              <circle class="blip fade" cx="140" cy="70"  r="3" style="animation-delay:0s"/>
-              <circle class="blip fade" cx="60"  cy="120" r="3" style="animation-delay:1.2s"/>
+              <circle class="blip fade" cx="140" cy="70" r="3" style="animation-delay:0s"/>
+              <circle class="blip fade" cx="60" cy="120" r="3" style="animation-delay:1.2s"/>
               <circle class="blip fade" cx="155" cy="135" r="3" style="animation-delay:2.4s"/>
-              <circle class="blip fade" cx="75"  cy="60"  r="3" style="animation-delay:3.1s"/>
-              <!-- Center -->
+              <circle class="blip fade" cx="75" cy="60" r="3" style="animation-delay:3.1s"/>
               <circle cx="100" cy="100" r="3.4" fill="#fff"/>
               <circle cx="100" cy="100" r="7" fill="none" stroke="#fff" stroke-opacity="0.35"/>
             </svg>
@@ -498,23 +223,18 @@
             <span id="radarLoc">FRA-01</span>
           </div>
         </div>
-
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- PRODUCTS -->
 <section class="relative pb-16 sm:pb-24">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="reveal text-center mb-12">
       <div class="inline-block glass rounded-full px-3 py-1 text-[11px] tracking-[0.2em] uppercase text-white/60 font-mono">two modes · one outcome</div>
-      <h2 class="font-display text-3xl sm:text-5xl font-bold mt-4 tracking-tight">DNS или VPN — выбирай под свой пуш</h2>
+      <h2 class="font-display text-3xl sm:text-5xl font-bold mt-4 tracking-tight">DNS или VPN. Выбирай под свой пуш</h2>
     </div>
-
     <div class="grid md:grid-cols-2 gap-5">
-      <!-- DNS card -->
       <div class="reveal glass rounded-3xl p-6 sm:p-8 ring-soft relative overflow-hidden tilt-card" data-tilt>
         <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full blur-3xl opacity-40" style="background:#60A5FA"></div>
         <div class="relative tilt-inner">
@@ -527,30 +247,17 @@
               <h3 class="font-display text-2xl font-semibold">Kenji DNS</h3>
             </div>
           </div>
-
           <p class="font-display text-xl sm:text-2xl font-semibold leading-snug">
             Ноль приложений. Ноль настроек.<br/>
-            <span class="text-white/70 font-medium">Вставил в профиль — погнал пушить.</span>
+            <span class="text-white/70 font-medium">Вставил в профиль. Погнал пушить.</span>
           </p>
-
           <ul class="mt-5 space-y-2.5 text-sm text-white/80">
-            <li class="flex items-center gap-3">
-              <span class="bullet"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="#93C5FD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
-              Без приложения · iOS и Android
-            </li>
-            <li class="flex items-center gap-3">
-              <span class="bullet"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="#93C5FD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg></span>
-              Режет рекламу и трекеры в игре
-            </li>
-            <li class="flex items-center gap-3">
-              <span class="bullet"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="#93C5FD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg></span>
-              0 фоновых процессов · минимум отклика
-            </li>
+            <li class="flex items-center gap-3"><span class="bullet"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="#93C5FD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span> Без приложения · iOS и Android</li>
+            <li class="flex items-center gap-3"><span class="bullet"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="#93C5FD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg></span> Режет рекламу и трекеры в игре</li>
+            <li class="flex items-center gap-3"><span class="bullet"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="#93C5FD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg></span> 0 фоновых процессов · минимум отклика</li>
           </ul>
         </div>
       </div>
-
-      <!-- VPN card -->
       <div class="reveal glass rounded-3xl p-6 sm:p-8 ring-soft relative overflow-hidden tilt-card card-glow" data-tilt>
         <div class="absolute -top-24 -left-24 w-72 h-72 rounded-full blur-3xl opacity-40" style="background:#A855F7"></div>
         <div class="relative tilt-inner">
@@ -563,25 +270,14 @@
               <h3 class="font-display text-2xl font-semibold">Kenji VPN</h3>
             </div>
           </div>
-
           <p class="font-display text-xl sm:text-2xl font-semibold leading-snug">
             Прямая трасса до EU дата-центров.<br/>
             <span class="text-white/70 font-medium">Никаких вылетов в финале матча.</span>
           </p>
-
           <ul class="mt-5 space-y-2.5 text-sm text-white/80">
-            <li class="flex items-center gap-3">
-              <span class="bullet"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="#C4B5FD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-9 12h7l-1 8 9-12h-7l1-8z"/></svg></span>
-              Xray / VLESS · игровая маршрутизация
-            </li>
-            <li class="flex items-center gap-3">
-              <span class="bullet"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="#C4B5FD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
-              Прямой коннект в EU дата-центры
-            </li>
-            <li class="flex items-center gap-3">
-              <span class="bullet"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="#C4B5FD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg></span>
-              Без сбива ММ на 3 Прайм и Про Лиге
-            </li>
+            <li class="flex items-center gap-3"><span class="bullet"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="#C4B5FD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2-9 12h7l-1 8 9-12h-7l1-8z"/></svg></span> Xray / VLESS · игровая маршрутизация</li>
+            <li class="flex items-center gap-3"><span class="bullet"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="#C4B5FD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span> Прямой коннект в EU дата-центры</li>
+            <li class="flex items-center gap-3"><span class="bullet"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5" fill="none" stroke="#C4B5FD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg></span> Без сбива ММ на 3 Прайм и Про Лиге</li>
           </ul>
         </div>
       </div>
@@ -589,7 +285,6 @@
   </div>
 </section>
 
-<!-- PRICING -->
 <section class="relative pb-16 sm:pb-24">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="reveal text-center mb-12">
@@ -597,10 +292,7 @@
       <h2 class="font-display text-3xl sm:text-5xl font-bold mt-4 tracking-tight">Выбери режим под свой пуш</h2>
       <p class="text-white/60 mt-3 max-w-xl mx-auto">От бесплатного теста до выделенного киберспорт-сервера. Доступ в боте за 30 секунд.</p>
     </div>
-
     <div class="grid md:grid-cols-3 gap-5">
-
-      <!-- Free -->
       <div class="reveal glass rounded-3xl p-6 sm:p-7 ring-soft flex flex-col tilt-card" data-tilt>
         <div class="flex items-center justify-between tilt-inner">
           <div class="text-[11px] tracking-[0.2em] uppercase text-white/45 font-mono">Free</div>
@@ -624,8 +316,6 @@
           <a href="https://t.me/Kenjipay_bot" target="_blank" rel="noopener" class="btn-ghost rounded-2xl mt-6 py-3 text-sm font-semibold text-center">Забрать бесплатно</a>
         </div>
       </div>
-
-      <!-- Pro -->
       <div class="reveal glass rounded-3xl p-6 sm:p-7 ring-soft flex flex-col relative card-glow tilt-card" data-tilt>
         <div class="absolute -top-3 left-1/2 -translate-x-1/2 glass-strong rounded-full px-3 py-1 text-[10px] tracking-[0.2em] uppercase text-white/85 font-mono">Популярный</div>
         <div class="flex items-center justify-between tilt-inner">
@@ -651,8 +341,6 @@
           <a href="https://t.me/Kenjipay_bot" target="_blank" rel="noopener" class="btn-primary rounded-2xl mt-6 py-3 text-sm font-semibold text-center">Активировать</a>
         </div>
       </div>
-
-      <!-- VIP -->
       <div class="reveal glass rounded-3xl p-6 sm:p-7 ring-soft flex flex-col relative tilt-card" data-tilt>
         <div class="neon-orbit"></div>
         <div class="flex items-center justify-between tilt-inner">
@@ -678,12 +366,10 @@
           <a href="https://t.me/Kenjipay_bot" target="_blank" rel="noopener" class="btn-ghost rounded-2xl mt-6 py-3 text-sm font-semibold text-center">Получить VIP</a>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="relative py-12 mt-10">
   <div class="max-w-6xl mx-auto px-4 sm:px-6">
     <div class="glass rounded-3xl px-5 sm:px-7 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -698,183 +384,10 @@
         <a href="https://t.me/Kenjipay_bot" target="_blank" rel="noopener" class="btn-primary rounded-xl px-3.5 py-2 text-sm font-semibold">Telegram-бот</a>
       </div>
     </div>
-    <p class="text-center text-[11px] text-white/35 mt-5 font-mono">// Kenji VPN &amp; DNS — игровой инструмент для пуша Прайм-рангов и Про Лиги в Brawl Stars. Не сервис анонимности или обхода законодательных ограничений.</p>
+    <p class="text-center text-[11px] text-white/35 mt-5 font-mono">// Kenji VPN &amp; DNS. Игровой инструмент для пуша Прайм-рангов и Про Лиги в Brawl Stars. Не сервис анонимности или обхода законодательных ограничений.</p>
   </div>
 </footer>
 
-<script>
-  // ---------- Reveal on scroll ----------
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // ---------- Server profiles ----------
-  const SERVERS = {
-    fra: { name: 'FRA-01', ping: [22, 28], jitter: [0.8, 1.6], loss: [0, 0.2], ispBase: [55, 110] },
-    waw: { name: 'WAW-02', ping: [28, 36], jitter: [1.0, 2.0], loss: [0, 0.3], ispBase: [70, 130] },
-    ams: { name: 'AMS-03', ping: [25, 33], jitter: [0.9, 1.8], loss: [0, 0.25], ispBase: [60, 120] },
-  };
-  let activeServer = 'fra';
-
-  // ---------- Helpers ----------
-  function rand(min, max, dec) {
-    const v = Math.random() * (max - min) + min;
-    return dec ? +v.toFixed(dec) : Math.round(v);
-  }
-
-  function flipUpdate(el, value) {
-    el.classList.add('flip');
-    setTimeout(() => {
-      el.textContent = value;
-      el.classList.remove('flip');
-    }, 220);
-  }
-
-  // ---------- Sparkline generator ----------
-  function buildSpark(points, w=200, h=28, pad=3) {
-    if (!points.length) return '';
-    const max = Math.max(...points);
-    const min = Math.min(...points);
-    const range = (max - min) || 1;
-    const step = (w - pad*2) / (points.length - 1);
-    return points.map((p, i) => {
-      const x = pad + i * step;
-      const y = pad + (h - pad*2) * (1 - (p - min) / range);
-      return `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`;
-    }).join(' ');
-  }
-
-  // ---------- State ----------
-  const sparks = {
-    ping:   Array.from({length: 36}, () => rand(22, 28, 1)),
-    jitter: Array.from({length: 36}, () => rand(0.8, 1.6, 2)),
-    loss:   Array.from({length: 36}, () => rand(0, 0.2, 2)),
-  };
-  const chart = {
-    kenji: Array.from({length: 60}, () => rand(24, 30, 1)),
-    isp:   Array.from({length: 60}, () => rand(55, 110, 1)),
-  };
-
-  const pingEl = document.getElementById('ping');
-  const jitterEl = document.getElementById('jitter');
-  const lossEl = document.getElementById('loss');
-  const radarLoc = document.getElementById('radarLoc');
-  const sparkPing = document.getElementById('sparkPing');
-  const sparkJit = document.getElementById('sparkJit');
-  const sparkLoss = document.getElementById('sparkLoss');
-  const lineKenji = document.getElementById('lineKenji');
-  const areaKenji = document.getElementById('areaKenji');
-  const lineIsp = document.getElementById('lineIsp');
-
-  // ---------- Big chart paths ----------
-  function buildChart() {
-    const W = 600, H = 140, padX = 6, padY = 10;
-    const stepK = (W - padX*2) / (chart.kenji.length - 1);
-    const stepI = (W - padX*2) / (chart.isp.length - 1);
-
-    // Kenji band (24-32)
-    const kMin = 18, kMax = 40;
-    const kPts = chart.kenji.map((p, i) => {
-      const x = padX + i * stepK;
-      const y = padY + (H - padY*2) * (1 - (p - kMin) / (kMax - kMin));
-      return [x, y];
-    });
-    const kPath = kPts.map((pt, i) => `${i ? 'L' : 'M'}${pt[0].toFixed(1)},${pt[1].toFixed(1)}`).join(' ');
-    lineKenji.setAttribute('d', kPath);
-    areaKenji.setAttribute('d', `${kPath} L${kPts[kPts.length-1][0].toFixed(1)},${H-padY} L${kPts[0][0].toFixed(1)},${H-padY} Z`);
-
-    // ISP band (40-130 spiky)
-    const iMin = 30, iMax = 140;
-    const iPath = chart.isp.map((p, i) => {
-      const x = padX + i * stepI;
-      const y = padY + (H - padY*2) * (1 - (p - iMin) / (iMax - iMin));
-      return `${i ? 'L' : 'M'}${x.toFixed(1)},${y.toFixed(1)}`;
-    }).join(' ');
-    lineIsp.setAttribute('d', iPath);
-  }
-
-  // ---------- Initial paint ----------
-  function repaintSparks() {
-    sparkPing.setAttribute('d', buildSpark(sparks.ping));
-    sparkJit.setAttribute('d',  buildSpark(sparks.jitter));
-    sparkLoss.setAttribute('d', buildSpark(sparks.loss));
-  }
-  repaintSparks();
-  buildChart();
-
-  // ---------- Tick loop ----------
-  function tick() {
-    const s = SERVERS[activeServer];
-
-    // Stats with flip
-    const newPing   = rand(s.ping[0],   s.ping[1],   0);
-    const newJitter = rand(s.jitter[0], s.jitter[1], 1);
-    const newLoss   = rand(s.loss[0],   s.loss[1],   1);
-
-    if (pingEl.textContent !== String(newPing))   flipUpdate(pingEl,   newPing);
-    if (jitterEl.textContent !== String(newJitter)) flipUpdate(jitterEl, newJitter);
-    if (lossEl.textContent !== String(newLoss))   flipUpdate(lossEl,   newLoss);
-
-    // Sparks
-    sparks.ping.push(newPing);   sparks.ping.shift();
-    sparks.jitter.push(newJitter); sparks.jitter.shift();
-    sparks.loss.push(newLoss);   sparks.loss.shift();
-    repaintSparks();
-
-    // Big chart
-    chart.kenji.push(rand(s.ping[0] + 1, s.ping[1] + 2, 1));
-    chart.kenji.shift();
-
-    // ISP — spiky with occasional jumps
-    const spike = Math.random() < 0.18 ? rand(40, 70, 0) : 0;
-    chart.isp.push(rand(s.ispBase[0], s.ispBase[1], 0) + spike);
-    chart.isp.shift();
-    buildChart();
-  }
-  setInterval(tick, 1400);
-
-  // ---------- Server tabs ----------
-  document.querySelectorAll('#serverTabs .tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('#serverTabs .tab').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeServer = btn.dataset.server;
-      radarLoc.textContent = SERVERS[activeServer].name;
-      tick(); // immediate snap
-    });
-  });
-
-  // ---------- Orb parallax ----------
-  const orbs = document.querySelectorAll('.orb');
-  window.addEventListener('mousemove', (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5);
-    const y = (e.clientY / window.innerHeight - 0.5);
-    orbs.forEach((o, i) => {
-      const k = (i + 1) * 8;
-      o.style.transform = `translate(${x * k}px, ${y * k}px)`;
-    });
-  }, { passive: true });
-
-  // ---------- 3D Tilt ----------
-  const tiltCards = document.querySelectorAll('[data-tilt]');
-  tiltCards.forEach(card => {
-    let rect = null;
-    card.addEventListener('mouseenter', () => { rect = card.getBoundingClientRect(); });
-    card.addEventListener('mousemove', (e) => {
-      if (!rect) rect = card.getBoundingClientRect();
-      const px = (e.clientX - rect.left) / rect.width;
-      const py = (e.clientY - rect.top) / rect.height;
-      const rx = (py - 0.5) * -8;
-      const ry = (px - 0.5) * 10;
-      card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(900px) rotateX(0) rotateY(0)';
-      rect = null;
-    });
-  });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
