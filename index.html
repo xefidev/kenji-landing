@@ -1,1 +1,438 @@
-Let me fetch current content first to apply changes.
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0a0c" />
+  <title>Kenji - VPN & DNS для Brawl Stars</title>
+  <meta name="description" content="Kenji VPN & DNS для Brawl Stars: пуш до 3 Прайма и Pro League, понижение пинга, фарм 3x3, BSD+. 250⭐ или NFT." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23ff5b4a'/><stop offset='1' stop-color='%23b81c1c'/></linearGradient></defs><rect x='1' y='1' width='30' height='30' rx='8' fill='url(%23g)'/><path d='M11 8v16M11 16l8-8M11 16l8 8' stroke='white' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-white focus:text-black focus:text-sm focus:font-semibold">Перейти к контенту</a>
+
+  <div class="bg-stage" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div class="orb orb-1" aria-hidden="true"></div>
+  <div class="orb orb-2" aria-hidden="true"></div>
+  <div class="orb orb-3" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="fixed inset-x-0 top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-4">
+      <nav class="glass rounded-2xl px-4 sm:px-5 py-3 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-2.5">
+          <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true">
+            <defs>
+              <linearGradient id="lm" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ff5b4a"/>
+                <stop offset="1" stop-color="#b81c1c"/>
+              </linearGradient>
+            </defs>
+            <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lm)"/>
+            <path d="M11 8v16M11 16l8-8M11 16l8 8" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <span class="font-display font-bold text-lg">Kenji</span>
+        </a>
+        <div class="hidden sm:flex items-center gap-6 text-sm text-white/70">
+          <a href="#live" class="hover:text-white transition">Live</a>
+          <a href="#features" class="hover:text-white transition">Фичи</a>
+          <a href="#vip" class="hover:text-white transition">VIP</a>
+          <a href="#trust" class="hover:text-white transition">Гарантии</a>
+          <a href="#reviews-cta" class="hover:text-white transition">Отзывы</a>
+        </div>
+        <a href="https://t.me/Kenjipay_bot" class="btn-primary rounded-full px-4 py-2 text-sm">Купить</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-32 sm:pt-40 pb-16 sm:pb-20">
+      <span class="hero-pill text-xs sm:text-sm reveal">
+        <span class="pulse-dot"></span>
+        <span class="text-white/85"><span id="heroOnline">346</span> онлайн прямо сейчас</span>
+      </span>
+      <h1 class="font-display font-bold tracking-tight text-5xl sm:text-6xl md:text-7xl leading-[0.98] mt-6 max-w-2xl reveal">
+        <span class="hero-grad">ДОМИНИРУЙ</span><br/>
+        <span class="text-white">В BRAWL STARS.</span>
+      </h1>
+      <p class="text-white/65 text-base sm:text-lg mt-5 max-w-xl leading-relaxed reveal">
+        VPN и DNS для пуша кубков до 3 Прайма и Pro League. Понижение пинга, фарм 3x3, BSD+, защита аккаунта.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row items-center gap-3 reveal">
+        <a href="https://t.me/Kenjipay_bot" class="btn-primary rounded-full px-7 py-3.5 text-base font-semibold w-full sm:w-auto">
+          Подключить за 250⭐
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:8px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="https://t.me/Kenji_wifi" class="btn-ghost rounded-full px-6 py-3.5 text-base font-semibold w-full sm:w-auto">Канал в Telegram</a>
+      </div>
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-white/55 reveal">
+        <span class="inline-flex items-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.5 9.3 8 11 4.5-1.7 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+          Анонимность
+        </span>
+        <span class="inline-flex items-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+          Гарантия
+        </span>
+        <span class="inline-flex items-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          24/7 Поддержка
+        </span>
+      </div>
+    </section>
+
+    <!-- LIVE ACTIVITY -->
+    <section id="live" class="relative px-4 sm:px-6 pb-20 sm:pb-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="mb-10 reveal">
+          <span class="eyebrow">Live activity</span>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl mt-3 tracking-tight">СЕРВИС РАБОТАЕТ ПРЯМО СЕЙЧАС</h2>
+          <p class="text-white/60 mt-3 max-w-xl">Реальные данные обновляются в реальном времени. Без накруток.</p>
+        </div>
+        <div class="live-stats reveal">
+          <div class="live-stat glass">
+            <div class="live-stat-head">
+              <svg class="live-stat-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+              <span class="live-stat-label">Онлайн сейчас</span>
+            </div>
+            <div class="live-stat-value live-stat-value-accent" id="statOnline">346</div>
+            <div class="live-stat-sub">активных юзеров</div>
+            <div class="live-flag-strip">
+              <span class="live-flag" id="flagRotate">🇷🇺</span>
+              <span class="live-flag-text" id="flagCountry">Россия</span>
+            </div>
+          </div>
+          <div class="live-stat glass">
+            <div class="live-stat-head">
+              <svg class="live-stat-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span class="live-stat-label">Всего юзеров</span>
+            </div>
+            <div class="live-stat-value" id="statTotal">8 420</div>
+            <div class="live-stat-sub">за всё время</div>
+            <div class="live-bar"><div class="live-bar-fill" style="width:78%"></div></div>
+          </div>
+          <div class="live-stat glass">
+            <div class="live-stat-head">
+              <svg class="live-stat-ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <span class="live-stat-label">Сегодня</span>
+            </div>
+            <div class="live-stat-value live-stat-value-accent" id="statToday">+47</div>
+            <div class="live-stat-sub">новых подключений</div>
+            <div class="live-trend">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+              +12% к вчерашнему
+            </div>
+          </div>
+        </div>
+
+        <!-- REVIEWS CAROUSEL -->
+        <div class="reviews-wrap glass-strong reveal" style="margin-top:32px">
+          <div class="reviews-head">
+            <div>
+              <span class="eyebrow">Live отзывы</span>
+              <h3 class="font-display font-bold text-2xl sm:text-3xl mt-2 tracking-tight">ЧТО ГОВОРЯТ ЮЗЕРЫ</h3>
+            </div>
+            <a href="https://t.me/KenjiVPNreviews" class="btn-ghost rounded-full px-5 py-2.5 text-sm font-semibold self-start">Все отзывы</a>
+          </div>
+          <div class="reviews-viewport" id="reviewsViewport">
+            <div class="review-track" id="reviewTrack">
+              <div class="review-card">
+                <div class="review-top">
+                  <div class="review-avatar" style="background:linear-gradient(135deg,#ff5b4a,#b81c1c)">М</div>
+                  <div class="review-meta">
+                    <span class="review-name">Максим К.</span>
+                    <span class="review-rank"><span class="rank-dot rank-mythic"></span>Мифик III</span>
+                  </div>
+                  <span class="review-time">2 мин назад</span>
+                </div>
+                <p class="review-text">Подключил VPN и сразу пинг упал с 90 до 35. За день вышел из легенды в мифик. Боты в трио просто топ, тащат катки.</p>
+                <div class="review-tags"><span class="review-tag">Пинг</span><span class="review-tag">Боты</span></div>
+              </div>
+              <div class="review-card">
+                <div class="review-top">
+                  <div class="review-avatar" style="background:linear-gradient(135deg,#f59e0b,#b45309)">А</div>
+                  <div class="review-meta">
+                    <span class="review-name">Артём В.</span>
+                    <span class="review-rank"><span class="rank-dot rank-legend"></span>Легенда II</span>
+                  </div>
+                  <span class="review-time">8 мин назад</span>
+                </div>
+                <p class="review-text">BSD+ это вообще пушка. Установка заняла 5 минут, поддержка ответила сразу. За неделю поднял 2к кубков.</p>
+                <div class="review-tags"><span class="review-tag">BSD+</span><span class="review-tag">Поддержка</span></div>
+              </div>
+              <div class="review-card">
+                <div class="review-top">
+                  <div class="review-avatar" style="background:linear-gradient(135deg,#ff3b30,#7c1414)">К</div>
+                  <div class="review-meta">
+                    <span class="review-name">Кирилл Д.</span>
+                    <span class="review-rank"><span class="rank-dot rank-prime"></span>1 Прайм</span>
+                  </div>
+                  <span class="review-time">14 мин назад</span>
+                </div>
+                <p class="review-text">Сбив ММ работает на ура, ловлю удобный пул соперников. До этого был в постоянном тильте, теперь стабильный пуш.</p>
+                <div class="review-tags"><span class="review-tag">Сбив ММ</span></div>
+              </div>
+              <div class="review-card">
+                <div class="review-top">
+                  <div class="review-avatar" style="background:linear-gradient(135deg,#ff3b30,#7c1414)">Д</div>
+                  <div class="review-meta">
+                    <span class="review-name">Дима Р.</span>
+                    <span class="review-rank"><span class="rank-dot rank-prime"></span>2 Прайма</span>
+                  </div>
+                  <span class="review-time">23 мин назад</span>
+                </div>
+                <p class="review-text">VPN сборник вообще огонь, YouTube и TikTok летают, плюс БС теперь без лагов. Цена 250⭐ окупилась за день.</p>
+                <div class="review-tags"><span class="review-tag">VPN</span><span class="review-tag">Цена</span></div>
+              </div>
+              <div class="review-card">
+                <div class="review-top">
+                  <div class="review-avatar" style="background:linear-gradient(135deg,#ff3b30,#7c1414)">С</div>
+                  <div class="review-meta">
+                    <span class="review-name">Стас П.</span>
+                    <span class="review-rank"><span class="rank-dot rank-prime"></span>3 Прайма</span>
+                  </div>
+                  <span class="review-time">31 мин назад</span>
+                </div>
+                <p class="review-text">Дошёл до 3 Прайма за 2 недели. Трио ботов фармят 24/7, ты только следишь. Лучшее вложение в БС за все годы.</p>
+                <div class="review-tags"><span class="review-tag">Прайм</span><span class="review-tag">Фарм</span></div>
+              </div>
+              <div class="review-card">
+                <div class="review-top">
+                  <div class="review-avatar" style="background:linear-gradient(135deg,#fff,#9ca0a8);color:#0a0a0c">Н</div>
+                  <div class="review-meta">
+                    <span class="review-name">Никита Л.</span>
+                    <span class="review-rank"><span class="rank-dot rank-pro"></span>Pro League</span>
+                  </div>
+                  <span class="review-time">45 мин назад</span>
+                </div>
+                <p class="review-text">Был сомневающимся, но решил попробовать за NFT. Прайм поднял до 3, теперь играю Pro League. Команда Kenji реально топ.</p>
+                <div class="review-tags"><span class="review-tag">Pro League</span></div>
+              </div>
+              <div class="review-card">
+                <div class="review-top">
+                  <div class="review-avatar" style="background:linear-gradient(135deg,#a855f7,#6b21a8)">Р</div>
+                  <div class="review-meta">
+                    <span class="review-name">Роман Ш.</span>
+                    <span class="review-rank"><span class="rank-dot rank-mythic"></span>Мифик II</span>
+                  </div>
+                  <span class="review-time">1 ч назад</span>
+                </div>
+                <p class="review-text">Кик пассажиров спасает в трио, никаких рандомных нубов. FPS-бустер реально даёт стабильные 120 кадров на моём телефоне.</p>
+                <div class="review-tags"><span class="review-tag">FPS</span><span class="review-tag">Кик</span></div>
+              </div>
+              <div class="review-card">
+                <div class="review-top">
+                  <div class="review-avatar" style="background:linear-gradient(135deg,#f59e0b,#b45309)">В</div>
+                  <div class="review-meta">
+                    <span class="review-name">Влад Ф.</span>
+                    <span class="review-rank"><span class="rank-dot rank-legend"></span>Легенда III</span>
+                  </div>
+                  <span class="review-time">1 ч назад</span>
+                </div>
+                <p class="review-text">Поддержка отвечает за 5 минут, всё подсказали. Установка BSD от команды сэкономила кучу времени. Рекомендую.</p>
+                <div class="review-tags"><span class="review-tag">Поддержка</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="reviews-dots" id="reviewsDots"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="relative px-4 sm:px-6 pb-20 sm:pb-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="mb-12 reveal">
+          <span class="eyebrow">Ключевые фичи</span>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl mt-3 tracking-tight">ТЕХНОЛОГИЯ ЗА СЦЕНОЙ</h2>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-5">
+          <div class="glass-card reveal">
+            <div class="feat-ico-wrap"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <h3 class="font-display font-semibold text-xl mt-4">МИНИМАЛЬНЫЙ ПИНГ</h3>
+            <p class="text-white/65 text-sm mt-3 leading-relaxed">Прямые маршруты до серверов Supercell. Минус 30-60 мс на средней дистанции.</p>
+          </div>
+          <div class="glass-card reveal">
+            <div class="feat-ico-wrap"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+            <h3 class="font-display font-semibold text-xl mt-4">СБИВ МАТЧМЕЙКИНГА</h3>
+            <p class="text-white/65 text-sm mt-3 leading-relaxed">Перезапуск ММ-сессии: уходишь от тильт-стрика, ловишь нужный пул соперников.</p>
+          </div>
+          <div class="glass-card reveal">
+            <div class="feat-ico-wrap"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.5 9.3 8 11 4.5-1.7 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+            <h3 class="font-display font-semibold text-xl mt-4">ЗАЩИТА АККАУНТА</h3>
+            <p class="text-white/65 text-sm mt-3 leading-relaxed">Никаких сторонних логинов. DNS-маршрутизация без рисков для Supercell ID.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIP -->
+    <section id="vip" class="relative px-4 sm:px-6 pb-20 sm:pb-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="mb-10 reveal">
+          <span class="eyebrow">VIP подписка</span>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl mt-3 tracking-tight">ВСЁ В ОДНОЙ ПОДПИСКЕ</h2>
+        </div>
+        <div class="vip-card glass-strong reveal">
+          <div class="vip-head">
+            <div>
+              <h3 class="font-display font-bold text-2xl sm:text-3xl tracking-tight">KENJI VIP</h3>
+              <p class="text-white/60 text-sm mt-2 max-w-md">Полный доступ к VPN, DNS, ботам и BSD+. Один платёж, вечная подписка.</p>
+            </div>
+            <span class="vip-price-tag">250⭐ или NFT</span>
+          </div>
+          <div class="vip-grid">
+            <div class="vip-feat"><div class="vip-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></div><div class="vip-text"><strong>Пуш выше 3 Прайма</strong> и Pro League без потолка</div></div>
+            <div class="vip-feat"><div class="vip-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div class="vip-text"><strong>VPN сборник</strong> для YouTube, TikTok, Telegram звонков, Clash Royale</div></div>
+            <div class="vip-feat"><div class="vip-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div><div class="vip-text"><strong>Бот в соло</strong> для одиночного фарма</div></div>
+            <div class="vip-feat"><div class="vip-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="4"/><circle cx="16" cy="12" r="4"/></svg></div><div class="vip-text"><strong>Боты в дуо</strong> для парного фарма</div></div>
+            <div class="vip-feat"><div class="vip-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3"/><circle cx="6" cy="16" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="vip-text"><strong>Боты в трио</strong> для фарма 3x3</div></div>
+            <div class="vip-feat"><div class="vip-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="vip-text"><strong>Понижение пинга</strong> на средней дистанции</div></div>
+            <div class="vip-feat"><div class="vip-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="vip-text"><strong>FPS-бустер</strong> для стабильных 120 кадров</div></div>
+            <div class="vip-feat"><div class="vip-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="vip-text"><strong>Фарм 3x3</strong> без сторонних игроков</div></div>
+            <div class="vip-feat"><div class="vip-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/></svg></div><div class="vip-text"><strong>Сбив ММ</strong> для перезапуска сессии</div></div>
+            <div class="vip-feat"><div class="vip-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></div><div class="vip-text"><strong>Кик пассажиров</strong> из твоего матча</div></div>
+            <div class="vip-feat"><div class="vip-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div><div class="vip-text"><strong>BSD+</strong> расширенная Brawl Stars Dev</div></div>
+            <div class="vip-feat"><div class="vip-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg></div><div class="vip-text"><strong>Установка BSD</strong> от команды Kenji</div></div>
+          </div>
+          <div class="vip-divider"></div>
+          <div class="vip-bottom">
+            <div>
+              <h4 class="font-display font-semibold text-lg mb-3">ПЛЮСЫ VPN СБОРНИКА</h4>
+              <ul class="plus-list">
+                <li><span class="plus-dot"></span>YouTube без ограничений</li>
+                <li><span class="plus-dot"></span>TikTok из любой страны</li>
+                <li><span class="plus-dot"></span>Звонки в Telegram</li>
+                <li><span class="plus-dot"></span>Clash Royale без блокировок</li>
+                <li><span class="plus-dot"></span>Полностью без рекламы</li>
+              </ul>
+            </div>
+            <div class="vip-cta-block">
+              <div class="vip-price-big">250⭐</div>
+              <p class="text-white/60 text-sm mt-2">или эквивалент в NFT</p>
+              <a href="https://t.me/Kenjipay_bot" class="btn-primary rounded-full px-6 py-3 mt-5 text-sm font-semibold w-full sm:w-auto">Купить в @Kenjipay_bot</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TRUST: АНОНИМНОСТЬ / ПОДДЕРЖКА / ГАРАНТ ===== -->
+    <section id="trust" class="relative px-4 sm:px-6 pb-20 sm:pb-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="mb-12 reveal">
+          <span class="eyebrow">Гарантии и безопасность</span>
+          <h2 class="font-display font-bold text-3xl sm:text-4xl mt-3 tracking-tight">ТРИ ПРИЧИНЫ СПАТЬ СПОКОЙНО</h2>
+          <p class="text-white/60 mt-3 max-w-2xl">Полная анонимность, живая поддержка и реальный гарант сделок. Никаких логинов, никакого общения с подозрительными аккаунтами.</p>
+        </div>
+
+        <div class="trust-grid reveal">
+          <article class="trust-card trust-card-lg glass-strong">
+            <div class="trust-card-head">
+              <div class="trust-icon-big">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2 4 5v6c0 5 3.5 9.3 8 11 4.5-1.7 8-6 8-11V5l-8-3Z"/>
+                  <circle cx="9.5" cy="11" r="1.2" fill="currentColor"/>
+                  <circle cx="14.5" cy="11" r="1.2" fill="currentColor"/>
+                  <path d="M8.5 15c1 1 2.2 1.5 3.5 1.5s2.5-.5 3.5-1.5"/>
+                </svg>
+              </div>
+              <span class="trust-num">100%</span>
+            </div>
+            <h3 class="trust-card-title">Полная анонимность</h3>
+            <p class="trust-card-desc">Никаких регистраций, никаких Supercell ID, никаких email. Платишь Stars или NFT прямо в боте, получаешь ключ. Мы не знаем кто ты, ты не знаешь кто мы и это правильно.</p>
+            <ul class="trust-list">
+              <li><span class="trust-check">✓</span> Без логина в Supercell ID</li>
+              <li><span class="trust-check">✓</span> Без передачи аккаунта</li>
+              <li><span class="trust-check">✓</span> Оплата только Stars или NFT</li>
+              <li><span class="trust-check">✓</span> DNS не видит твою активность</li>
+            </ul>
+          </article>
+
+          <div class="trust-side">
+            <article class="trust-card glass">
+              <div class="trust-card-head">
+                <div class="trust-icon-big">
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 14a8 8 0 1 1 16 0v3a3 3 0 0 1-3 3h-1v-7h4"/>
+                    <path d="M4 14v3a3 3 0 0 0 3 3h1v-7H4"/>
+                  </svg>
+                </div>
+                <span class="trust-num trust-num-sm">&lt;5<small>мин</small></span>
+              </div>
+              <h3 class="trust-card-title">Поддержка 24/7</h3>
+              <p class="trust-card-desc">Среднее время ответа меньше 5 минут. Поможем с установкой BSD, настроим VPN, разрулим спорные ситуации. Без бот-автоответов.</p>
+              <a href="https://t.me/Kenjipay_bot" class="trust-link">Написать в Telegram
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
+            </article>
+
+            <article class="trust-card glass">
+              <div class="trust-card-head">
+                <div class="trust-icon-big">
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 2 4 5v6c0 5 3.5 9.3 8 11 4.5-1.7 8-6 8-11V5l-8-3Z"/>
+                    <path d="m9 12 2 2 4-4"/>
+                  </svg>
+                </div>
+                <span class="trust-num trust-num-sm">0<small>₽ риска</small></span>
+              </div>
+              <h3 class="trust-card-title">Гарант на сделках</h3>
+              <p class="trust-card-desc">Любая сделка свыше 250⭐ через гаранта Telegram. Деньги замораживаются до подтверждения работы сервиса. Если что-то не так, возврат без вопросов.</p>
+              <a href="https://t.me/Kenji_wifi" class="trust-link">Условия гаранта
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+              </a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS LINK -->
+    <section id="reviews-cta" class="relative px-4 sm:px-6 pb-20 sm:pb-24">
+      <div class="max-w-6xl mx-auto">
+        <div class="reviews-cta glass reveal">
+          <div>
+            <span class="eyebrow">Telegram канал</span>
+            <h2 class="font-display font-bold text-3xl sm:text-4xl mt-3 tracking-tight">Скриншоты и видео отзывы</h2>
+            <p class="text-white/65 mt-3 max-w-md">8420+ активных подписчиков. Скриншоты, видео, реальные кубки. Без накруток и фейков.</p>
+          </div>
+          <a href="https://t.me/KenjiVPNreviews" class="btn-ghost rounded-full px-6 py-3.5 text-base font-semibold self-start">
+            Открыть канал отзывов
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:8px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 py-12 px-4 sm:px-6">
+      <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-2.5">
+          <svg viewBox="0 0 32 32" width="22" height="22">
+            <rect x="1" y="1" width="30" height="30" rx="8" fill="url(#lm)"/>
+            <path d="M11 8v16M11 16l8-8M11 16l8 8" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          <span class="font-display font-bold text-base">Kenji</span>
+          <span class="text-white/40 text-xs ml-2">© 2026 Все права защищены</span>
+        </div>
+        <div class="flex items-center gap-5 text-sm text-white/55">
+          <a href="https://t.me/Kenjipay_bot" class="hover:text-white transition">Бот</a>
+          <a href="https://t.me/Kenji_wifi" class="hover:text-white transition">Канал</a>
+          <a href="https://t.me/KenjiVPNreviews" class="hover:text-white transition">Отзывы</a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
